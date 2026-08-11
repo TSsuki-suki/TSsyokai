@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TS作品図鑑</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         ヘッダー
+    ========================== -->
+    <header id="top">
+
+        <div class="site-header">
+            <div class="site-title">
+                <h1>TS作品図鑑</h1>
+                <p>TS作品を探すための作品データベース</p>
+            </div>
+
+            <div class="work-count">
+                掲載作品：<strong>0</strong>作品
+            </div>
+        </div>
+
+        <!-- 検索欄 -->
+        <div class="search-box">
+            <input type="search" placeholder="作品名・作者名などを検索">
+            <button type="button">検索</button>
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         ページ内ナビゲーション
+    ========================== -->
+    <nav class="navigation">
+
+        <a href="#new-works">新着作品</a>
+
+        <a href="#notice">お知らせ</a>
+
+        <a href="#search">条件から探す</a>
+
+        <a href="#works">作品一覧</a>
+
+        <a href="#about">サイトについて</a>
+
+        <a href="#faq">FAQ</a>
+
+        <a href="history.html">閲覧履歴</a>
+
+    </nav>
+
+
+    <main>
+
+        <!-- =========================
+             新着作品 ＋ お知らせ
+        ========================== -->
+        <section id="new-works">
+
+            <div class="section-title">
+                <h2>新着TS作品</h2>
+                <a href="#works">もっと見る →</a>
+            </div>
+
+
+            <!-- 新着小説 -->
+            <div class="subsection">
+
+                <h3>新着TS小説</h3>
+
+                <div class="work-list">
+
+                    <!-- 作品カード -->
+                    <a href="#" class="work-card">
+
+                        <div class="work-image">
+                            <span>NO IMAGE</span>
+                        </div>
+
+                        <div class="work-information">
+
+                            <p class="catch-copy">
+                                ★ TS後の心理描写がとにかく凄い！
+                            </p>
+
+                            <h3>作品タイトル</h3>
+
+                            <div class="work-tags">
+                                <span>オリジナル</span>
+                                <span>小説</span>
+                                <span>ハーメルン</span>
+                            </div>
+
+                            <div class="work-rating">
+                                <p>
+                                    TS主役度：
+                                    <strong>★★★★★★★★★☆</strong>
+                                    9/10
+                                </p>
+
+                                <p>
+                                    おすすめ度：
+                                    <strong>★★★★★★★★★★</strong>
+                                    10/10
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- 作品カード -->
+                    <a href="#" class="work-card">
+
+                        <div class="work-image">
+                            <span>NO IMAGE</span>
+                        </div>
+
+                        <div class="work-information">
+
+                            <p class="catch-copy">
+                                ★ 周囲の反応がとにかく面白い！
+                            </p>
+
+                            <h3>作品タイトル</h3>
+
+                            <div class="work-tags">
+                                <span>二次創作</span>
+                                <span>小説</span>
+                                <span>カクヨム</span>
+                            </div>
+
+                            <div class="work-rating">
+                                <p>
+                                    TS主役度：
+                                    <strong>★★★★★★★★☆☆</strong>
+                                    8/10
+                                </p>
+
+                                <p>
+                                    おすすめ度：
+                                    <strong>★★★★★★★★★☆</strong>
+                                    9/10
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- 新着漫画 -->
+            <div class="subsection">
+
+                <h3>新着TS漫画</h3>
+
+                <div class="work-list">
+
+                    <a href="#" class="work-card">
+
+                        <div class="work-image">
+                            <span>NO IMAGE</span>
+                        </div>
+
+                        <div class="work-information">
+
+                            <p class="catch-copy">
+                                ★ TSした本人が一番困惑している！
+                            </p>
+
+                            <h3>作品タイトル</h3>
+
+                            <div class="work-tags">
+                                <span>オリジナル</span>
+                                <span>漫画</span>
+                            </div>
+
+                            <div class="work-rating">
+                                <p>
+                                    TS主役度：
+                                    <strong>★★★★★★★★☆☆</strong>
+                                    8/10
+                                </p>
+
+                                <p>
+                                    おすすめ度：
+                                    <strong>★★★★★★★★☆☆</strong>
+                                    8/10
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             お知らせ
+        ========================== -->
+        <aside id="notice">
+
+            <h2>管理者からのお知らせ</h2>
+
+            <ul>
+                <li>
+                    <time>2026/08/11</time>
+                    サイトを開設しました。
+                </li>
+
+                <li>
+                    <time>2026/08/11</time>
+                    現在、作品情報を整理中です。
+                </li>
+            </ul>
+
+        </aside>
+
+
+        <!-- =========================
+             条件から探す
+        ========================== -->
+        <section id="search">
+
+            <h2>ジャンル・条件から探す</h2>
+
+
+            <div class="search-category">
+
+                <h3>TS形式</h3>
+
+                <div class="condition-list">
+                    <a href="#">男→女</a>
+                    <a href="#">女→男</a>
+                    <a href="#">可逆TS</a>
+                    <a href="#">不可逆TS</a>
+                    <a href="#">複数人TS</a>
+                    <a href="#">憑依</a>
+                    <a href="#">TSF</a>
+                    <a href="#">皮もの</a>
+                    <a href="#">前世思い出し</a>
+                    <a href="#">入れ替わり</a>
+                    <a href="#">変身</a>
+                    <a href="#">メス堕ち</a>
+                </div>
+
+            </div>
+
+
+            <div class="search-category">
+
+                <h3>作品区分</h3>
+
+                <div class="condition-list">
+                    <a href="#">オリジナル</a>
+                    <a href="#">二次創作</a>
+                </div>
+
+            </div>
+
+
+            <div class="search-category">
+
+                <h3>完結状況</h3>
+
+                <div class="condition-list">
+                    <a href="#">完結</a>
+                    <a href="#">連載中</a>
+                    <a href="#">休載中</a>
+                </div>
+
+            </div>
+
+
+            <div class="search-category">
+
+                <h3>ジャンル</h3>
+
+                <div class="condition-list">
+                    <a href="#">活劇</a>
+                    <a href="#">ファンタジー・SF</a>
+                    <a href="#">恐怖・怪奇</a>
+                    <a href="#">恋愛・ヒューマンドラマ</a>
+                    <a href="#">現代もの</a>
+                    <a href="#">童話</a>
+                    <a href="#">ミステリー・推理</a>
+                    <a href="#">歴史</a>
+                    <a href="#">コメディ</a>
+                    <a href="#">その他</a>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TS作品一覧
+        ========================== -->
+        <section id="works">
+
+            <div class="section-title">
+
+                <h2>TS作品一覧</h2>
+
+                <a href="#">すべての作品を見る →</a>
+
+            </div>
+
+
+            <div class="work-list">
+
+                <!-- 作品カード① -->
+                <a href="#" class="work-card">
+
+                    <div class="work-image">
+                        <span>NO IMAGE</span>
+                    </div>
+
+                    <div class="work-information">
+
+                        <p class="catch-copy">
+                            ★ TS後の生活描写が凄い！
+                        </p>
+
+                        <h3>作品タイトルA</h3>
+
+                        <div class="work-tags">
+                            <span>二次創作</span>
+                            <span>小説</span>
+                            <span>ハーメルン</span>
+                        </div>
+
+                        <div class="work-rating">
+                            <p>
+                                TS主役度：
+                                <strong>★★★★★★★★★☆</strong>
+                                9/10
+                            </p>
+
+                            <p>
+                                おすすめ度：
+                                <strong>★★★★★★★★★★</strong>
+                                10/10
+                            </p>
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- 作品カード② -->
+                <a href="#" class="work-card">
+
+                    <div class="work-image">
+                        <span>NO IMAGE</span>
+                    </div>
+
+                    <div class="work-information">
+
+                        <p class="catch-copy">
+                            ★ ギャグとTSの相性が抜群！
+                        </p>
+
+                        <h3>作品タイトルB</h3>
+
+                        <div class="work-tags">
+                            <span>オリジナル</span>
+                            <span>小説</span>
+                        </div>
+
+                        <div class="work-rating">
+                            <p>
+                                TS主役度：
+                                <strong>★★★★★★★★☆☆</strong>
+                                8/10
+                            </p>
+
+                            <p>
+                                おすすめ度：
+                                <strong>★★★★★★★★★☆</strong>
+                                9/10
+                            </p>
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- 作品カード③ -->
+                <a href="#" class="work-card">
+
+                    <div class="work-image">
+                        <span>NO IMAGE</span>
+                    </div>
+
+                    <div class="work-information">
+
+                        <p class="catch-copy">
+                            ★ TS後の人間関係が面白い！
+                        </p>
+
+                        <h3>作品タイトルC</h3>
+
+                        <div class="work-tags">
+                            <span>二次創作</span>
+                            <span>小説</span>
+                        </div>
+
+                        <div class="work-rating">
+                            <p>
+                                TS主役度：
+                                <strong>★★★★★★★☆☆☆</strong>
+                                7/10
+                            </p>
+
+                            <p>
+                                おすすめ度：
+                                <strong>★★★★★★★★☆☆</strong>
+                                8/10
+                            </p>
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="more-button">
+                <a href="#">TS作品をもっと見る</a>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             サイトについて
+        ========================== -->
+        <section id="about">
+
+            <h2>TS作品図鑑について</h2>
+
+            <p>
+                TS作品図鑑は、TS（性別転換）を扱った作品を探すための
+                個人運営の作品データベースです。
+            </p>
+
+            <p>
+                小説・漫画・アニメなど、さまざまな媒体のTS作品を
+                管理者の独自基準で分類・紹介しています。
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             FAQ
+        ========================== -->
+        <section id="faq">
+
+            <h2>よくある質問</h2>
+
+            <div class="faq-item">
+
+                <h3>Q. このサイトでは何を紹介していますか？</h3>
+
+                <p>
+                    TS（性別転換）を扱った作品を紹介しています。
+                </p>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <h3>Q. 作品を追加してほしい場合は？</h3>
+
+                <p>
+                    今後、作品情報の募集方法を用意する予定です。
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         フッター
+    ========================== -->
+    <footer>
+
+        <p>© TS作品図鑑</p>
+
+        <a href="#top">ページ上部へ戻る ↑</a>
+
+    </footer>
+
+
+</body>
+</html>

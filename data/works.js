@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const container = document.getElementById("works-list");
+    const container = document.getElementById("works-container");
 
     // 作品データが存在しない場合
     if (!container || typeof works === "undefined") {

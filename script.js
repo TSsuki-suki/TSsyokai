@@ -1,29 +1,35 @@
 // ========================================
-// TS作品図鑑
-// メインJavaScript
+// TS作品図鑑 メインスクリプト
 // ========================================
 
 
 // ----------------------------------------
 // 星評価を作る
+// 10点満点 → ★5段階
 // ----------------------------------------
+function createStars(value) {
 
-function makeStars(rating) {
+    const rating = Math.round(value / 2);
 
-    const maxStars = 5;
+    let stars = "";
 
-    const fullStars = "★".repeat(rating);
-    const emptyStars = "☆".repeat(maxStars - rating);
+    for (let i = 1; i <= 5; i++) {
 
-    return fullStars + emptyStars;
+        if (i <= rating) {
+            stars += "★";
+        } else {
+            stars += "☆";
+        }
+
+    }
+
+    return stars;
 }
-
 
 
 // ----------------------------------------
 // 作品カードを作る
 // ----------------------------------------
-
 function createWorkCard(work) {
 
     const card = document.createElement("article");
@@ -31,21 +37,33 @@ function createWorkCard(work) {
     card.className = "work-card";
 
 
+    // 作品ページへのリンク
+    const link = document.createElement("a");
+
+    link.href = `work.html?id=${work.id}`;
+    link.className = "work-card-link";
+
+
+    // ------------------------------------
     // 画像
-    let imageHTML;
+    // ------------------------------------
+    const imageArea = document.createElement("div");
+
+    imageArea.className = "work-card-image";
+
 
     if (work.image) {
 
-        imageHTML = `
-            <img
-                src="${work.image}"
-                alt="${work.title}"
-            >
-        `;
+        const img = document.createElement("img");
+
+        img.src = work.image;
+        img.alt = work.title;
+
+        imageArea.appendChild(img);
 
     } else {
 
-        imageHTML = `
+        imageArea.innerHTML = `
             <div class="no-image">
                 NO IMAGE
             </div>
@@ -54,88 +72,98 @@ function createWorkCard(work) {
     }
 
 
-    // カード本体
-    card.innerHTML = `
+    // ------------------------------------
+    // 作品情報
+    // ------------------------------------
+    const info = document.createElement("div");
 
-        <div class="work-image">
-            ${imageHTML}
-        </div>
-
-
-        <div class="work-info">
-
-            <div class="work-catchphrase">
-                ${work.catchphrase || ""}
-            </div>
+    info.className = "work-card-info";
 
 
-            <h3 class="work-title">
-                ${work.title}
-            </h3>
+    // 一言キャッチコピー
+    const catchphrase = document.createElement("div");
+
+    catchphrase.className = "work-card-catchphrase";
+
+    catchphrase.textContent =
+        work.catchphrase || "おすすめのTS作品";
 
 
-            <div class="work-rating">
+    // 作品名
+    const title = document.createElement("h3");
 
-                <div class="rating-item">
-                    <span class="rating-label">
-                        TS主役度
-                    </span>
+    title.className = "work-card-title";
 
-                    <span class="stars">
-                        ${makeStars(work.tsMain)}
-                    </span>
-                </div>
+    title.textContent = work.title;
 
 
-                <div class="rating-item">
-                    <span class="rating-label">
-                        おすすめ度
-                    </span>
+    // 作者
+    const author = document.createElement("p");
 
-                    <span class="stars">
-                        ${makeStars(work.recommendation)}
-                    </span>
-                </div>
+    author.className = "work-card-author";
 
-            </div>
+    author.textContent =
+        `作者：${work.author}`;
 
-        </div>
 
+    // ------------------------------------
+    // 評価
+    // ------------------------------------
+    const evaluation = document.createElement("div");
+
+    evaluation.className = "work-card-evaluation";
+
+
+    const tsRating = document.createElement("div");
+
+    tsRating.className = "rating";
+
+    tsRating.innerHTML = `
+        <span class="rating-label">TS主役度</span>
+        <span class="stars">${createStars(work.tsMain)}</span>
     `;
 
 
-    // ----------------------------------------
-    // カードをクリックしたとき
-    // ----------------------------------------
+    const recommendation = document.createElement("div");
 
-    card.addEventListener("click", () => {
+    recommendation.className = "rating";
 
-        if (work.url) {
+    recommendation.innerHTML = `
+        <span class="rating-label">おすすめ度</span>
+        <span class="stars">${createStars(work.recommendation)}</span>
+    `;
 
-            window.open(
-                work.url,
-                "_blank"
-            );
 
-        }
+    evaluation.appendChild(tsRating);
+    evaluation.appendChild(recommendation);
 
-    });
+
+    // ------------------------------------
+    // 組み立て
+    // ------------------------------------
+    info.appendChild(catchphrase);
+    info.appendChild(title);
+    info.appendChild(author);
+    info.appendChild(evaluation);
+
+
+    link.appendChild(imageArea);
+    link.appendChild(info);
+
+    card.appendChild(link);
 
 
     return card;
 }
 
 
-
 // ----------------------------------------
-// 指定した場所に作品を表示
+// 作品を表示する
 // ----------------------------------------
-
-function displayWorks(worksList, containerId) {
+function renderWorks(containerId, worksToShow) {
 
     const container =
         document.getElementById(containerId);
-
 
     if (!container) {
         return;
@@ -143,17 +171,15 @@ function displayWorks(worksList, containerId) {
 
 
     // 一度中身を空にする
-
     container.innerHTML = "";
 
 
-    // 作品が存在しない場合
-
-    if (worksList.length === 0) {
+    // 作品がない場合
+    if (worksToShow.length === 0) {
 
         container.innerHTML = `
-            <p class="no-results">
-                該当する作品がありません。
+            <p class="no-works">
+                該当する作品はありません。
             </p>
         `;
 
@@ -161,12 +187,10 @@ function displayWorks(worksList, containerId) {
     }
 
 
-    // 作品カードを生成
+    // カードを生成
+    worksToShow.forEach(work => {
 
-    worksList.forEach(work => {
-
-        const card =
-            createWorkCard(work);
+        const card = createWorkCard(work);
 
         container.appendChild(card);
 
@@ -175,101 +199,170 @@ function displayWorks(worksList, containerId) {
 }
 
 
-
 // ----------------------------------------
 // ページ読み込み時の処理
 // ----------------------------------------
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("DOMContentLoaded", () => {
 
 
-        // --------------------------------
-        // 作品数
-        // --------------------------------
+    // ====================================
+    // 新着TS小説
+    // ====================================
 
-        const workCount =
-            document.getElementById("work-count");
+    const novels =
+        works.filter(work => work.media === "小説");
 
-
-        if (workCount) {
-
-            workCount.textContent =
-                works.length;
-
-        }
+    renderWorks(
+        "new-novel-container",
+        novels.slice(0, 5)
+    );
 
 
+    // ====================================
+    // 新着TS漫画
+    // ====================================
 
-        // --------------------------------
-        // TS作品一覧
-        // --------------------------------
+    const manga =
+        works.filter(work => work.media === "漫画");
 
-        displayWorks(
-            works,
-            "works-container"
-        );
-
-
-
-        // --------------------------------
-        // 新着作品
-        // --------------------------------
-
-        const newestWorks =
-            [...works]
-                .sort(
-                    (a, b) =>
-                        new Date(b.addedDate)
-                        -
-                        new Date(a.addedDate)
-                );
+    renderWorks(
+        "new-manga-container",
+        manga.slice(0, 5)
+    );
 
 
-        // 最新5作品
+    // ====================================
+    // 新着TSアニメ
+    // ====================================
 
-        const newest =
-            newestWorks.slice(0, 5);
+    const anime =
+        works.filter(work => work.media === "アニメ");
 
-
-
-        // --------------------------------
-        // 新着小説
-        // --------------------------------
-
-        displayWorks(
-            newest.filter(
-                work => work.media === "小説"
-            ),
-            "new-novel-container"
-        );
+    renderWorks(
+        "new-anime-container",
+        anime.slice(0, 5)
+    );
 
 
+    // ====================================
+    // TS作品一覧
+    // ====================================
 
-        // --------------------------------
-        // 新着漫画
-        // --------------------------------
-
-        displayWorks(
-            newest.filter(
-                work => work.media === "漫画"
-            ),
-            "new-manga-container"
-        );
+    renderWorks(
+        "works-container",
+        works.slice(0, 5)
+    );
 
 
+    // ====================================
+    // 検索・絞り込み
+    // ====================================
 
-        // --------------------------------
-        // 新着アニメ
-        // --------------------------------
+    const filterButton =
+        document.getElementById("filter-button");
 
-        displayWorks(
-            newest.filter(
-                work => work.media === "アニメ"
-            ),
-            "new-anime-container"
-        );
+
+    if (filterButton) {
+
+        filterButton.addEventListener("click", () => {
+
+
+            const media =
+                document.getElementById("media-filter").value;
+
+            const ts =
+                document.getElementById("ts-filter").value;
+
+            const derivative =
+                document.getElementById("derivative-filter").value;
+
+            const status =
+                document.getElementById("status-filter").value;
+
+            const genre =
+                document.getElementById("genre-filter").value;
+
+
+            // --------------------------------
+            // 条件に合う作品を検索
+            // --------------------------------
+
+            const filteredWorks =
+                works.filter(work => {
+
+
+                    // 作品種別
+                    if (
+                        media &&
+                        work.media !== media
+                    ) {
+                        return false;
+                    }
+
+
+                    // TS形式
+                    if (
+                        ts &&
+                        !work.tsType.includes(ts)
+                    ) {
+                        return false;
+                    }
+
+
+                    // オリジナル・二次創作
+                    if (
+                        derivative &&
+                        work.derivative !== derivative
+                    ) {
+                        return false;
+                    }
+
+
+                    // 完結状況
+                    if (
+                        status &&
+                        work.status !== status
+                    ) {
+                        return false;
+                    }
+
+
+                    // ジャンル
+                    if (
+                        genre &&
+                        !work.genres.includes(genre)
+                    ) {
+                        return false;
+                    }
+
+
+                    return true;
+
+                });
+
+
+            // --------------------------------
+            // 検索結果を表示
+            // --------------------------------
+
+            renderWorks(
+                "works-container",
+                filteredWorks
+            );
+
+
+            // --------------------------------
+            // 検索結果までスクロール
+            // --------------------------------
+
+            document
+                .getElementById("works")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        });
 
     }
-);
+
+});

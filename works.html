@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>作品一覧｜TS作品図鑑</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- ==============================
+         ヘッダー
+    =============================== -->
+    <header id="top">
+
+        <div class="site-header">
+
+            <h1>
+                <a href="index.html">TS作品図鑑</a>
+            </h1>
+
+            <p>
+                TS作品を探すための作品データベース
+            </p>
+
+        </div>
+
+
+        <!-- 検索 -->
+        <div class="header-search">
+
+            <input
+                type="search"
+                id="work-search"
+                placeholder="作品名・作者名・タグなどから検索"
+            >
+
+            <button id="search-button">
+                検索
+            </button>
+
+        </div>
+
+
+        <!-- ナビゲーション -->
+        <nav class="site-nav">
+
+            <a href="index.html">トップ</a>
+            <a href="index.html#new-novel">新着作品</a>
+            <a href="index.html#notice">お知らせ</a>
+            <a href="index.html#search">作品を探す</a>
+            <a href="works.html">作品一覧</a>
+            <a href="index.html#about">サイトについて</a>
+            <a href="index.html#forum">質問・フォーラム</a>
+
+        </nav>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- ==============================
+             ページタイトル
+        =============================== -->
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <h2>TS作品一覧</h2>
+
+                <p>
+                    TS作品図鑑に登録されている作品を一覧できます。
+                </p>
+
+            </div>
+
+
+            <!-- ==============================
+                 絞り込み
+            =============================== -->
+            <div class="search-panel">
+
+                <div class="search-panel-row">
+
+
+                    <label>
+                        作品種別
+
+                        <select id="media-filter">
+
+                            <option value="">すべて</option>
+                            <option value="小説">小説</option>
+                            <option value="漫画">漫画</option>
+                            <option value="アニメ">アニメ</option>
+
+                        </select>
+
+                    </label>
+
+
+
+                    <label>
+                        TS形式
+
+                        <select id="ts-filter">
+
+                            <option value="">すべて</option>
+
+                            <option value="男→女">男→女</option>
+                            <option value="女→男">女→男</option>
+                            <option value="可逆TS">可逆TS</option>
+                            <option value="不可逆TS">不可逆TS</option>
+                            <option value="複数人TS">複数人TS</option>
+                            <option value="憑依">憑依</option>
+                            <option value="TSF">TSF</option>
+                            <option value="皮もの">皮もの</option>
+                            <option value="前世思い出し">前世思い出し</option>
+                            <option value="入れ替わり">入れ替わり</option>
+                            <option value="変身">変身</option>
+                            <option value="朝おん">朝おん</option>
+                            <option value="朝おと">朝おと</option>
+                            <option value="TST">TST</option>
+                            <option value="TSM">TSM</option>
+                            <option value="メス堕ち">メス堕ち</option>
+
+                        </select>
+
+                    </label>
+
+
+
+                    <label>
+                        作品区分
+
+                        <select id="derivative-filter">
+
+                            <option value="">すべて</option>
+                            <option value="オリジナル">オリジナル</option>
+                            <option value="二次創作">二次創作</option>
+
+                        </select>
+
+                    </label>
+
+                </div>
+
+
+
+                <div class="search-panel-row">
+
+
+                    <label>
+                        完結状況
+
+                        <select id="status-filter">
+
+                            <option value="">すべて</option>
+                            <option value="完結">完結</option>
+                            <option value="連載中">連載中</option>
+                            <option value="休載">休載</option>
+
+                        </select>
+
+                    </label>
+
+
+
+                    <label>
+                        ジャンル
+
+                        <select id="genre-filter">
+
+                            <option value="">すべて</option>
+
+                            <option value="ファンタジー">ファンタジー</option>
+                            <option value="SF">SF</option>
+                            <option value="アクション">アクション</option>
+                            <option value="恋愛">恋愛</option>
+                            <option value="コメディ">コメディ</option>
+                            <option value="日常">日常</option>
+                            <option value="ミステリー">ミステリー</option>
+                            <option value="ホラー">ホラー</option>
+                            <option value="歴史">歴史</option>
+                            <option value="スポーツ">スポーツ</option>
+                            <option value="その他">その他</option>
+
+                        </select>
+
+                    </label>
+
+
+
+                    <button id="filter-button">
+                        この条件で探す
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             検索結果
+        =============================== -->
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <h2>登録作品</h2>
+
+                <p id="result-count">
+                    作品を読み込んでいます……
+                </p>
+
+            </div>
+
+
+            <div
+                id="works-container"
+                class="works-container"
+            >
+
+                <!-- JavaScriptで作品カードを生成 -->
+
+            </div>
+
+
+            <!-- 作品がない場合 -->
+            <div
+                id="no-results"
+                class="no-results"
+                style="display: none;"
+            >
+
+                <p>
+                    条件に一致する作品がありません。
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==============================
+         フッター
+    =============================== -->
+    <footer>
+
+        <p>
+            © TS作品図鑑
+        </p>
+
+        <p>
+            <a href="index.html">
+                トップページへ戻る
+            </a>
+        </p>
+
+    </footer>
+
+
+
+    <!-- ==============================
+         作品データ
+    =============================== -->
+
+    <script src="data/works.js"></script>
+
+
+
+    <!-- ==============================
+         作品一覧用JavaScript
+    =============================== -->
+
+    <script>
+
+        /*
+         * ==========================================
+         * TS作品図鑑
+         * 全作品一覧ページ
+         * ==========================================
+         */
+
+
+        const container =
+            document.getElementById("works-container");
+
+        const resultCount =
+            document.getElementById("result-count");
+
+        const noResults =
+            document.getElementById("no-results");
+
+
+
+        /*
+         * ------------------------------------------
+         * ★評価を表示する
+         * ------------------------------------------
+         *
+         * 例：
+         * 5 → ★★★★★
+         * 4 → ★★★★☆
+         * 3 → ★★★☆☆
+         */
+
+        function createStars(value) {
+
+            const rating =
+                Math.max(0, Math.min(5, Math.round(value / 2)));
+
+            return "★".repeat(rating)
+                + "☆".repeat(5 - rating);
+
+        }
+
+
+
+        /*
+         * ------------------------------------------
+         * 作品カードを作る
+         * ------------------------------------------
+         */
+
+        function createWorkCard(work) {
+
+            const card =
+                document.createElement("article");
+
+            card.className = "work-card";
+
+
+            /*
+             * カード全体をクリックすると
+             * 個別作品ページへ移動
+             */
+
+            card.addEventListener("click", function () {
+
+                window.location.href =
+                    "work.html?id=" + encodeURIComponent(work.id);
+
+            });
+
+
+
+            /*
+             * 画像
+             */
+
+            const imageArea =
+                document.createElement("div");
+
+            imageArea.className = "work-card-image";
+
+
+            if (work.image) {
+
+                const image =
+                    document.createElement("img");
+
+                image.src = work.image;
+
+                image.alt =
+                    work.title + "の画像";
+
+                imageArea.appendChild(image);
+
+            } else {
+
+                imageArea.textContent =
+                    "NO IMAGE";
+
+            }
+
+
+
+            /*
+             * カード本文
+             */
+
+            const body =
+                document.createElement("div");
+
+            body.className = "work-card-body";
+
+
+
+            /*
+             * キャッチコピー
+             */
+
+            const catchphrase =
+                document.createElement("p");
+
+            catchphrase.className =
+                "work-card-catchphrase";
+
+            catchphrase.textContent =
+                work.catchphrase || "";
+
+
+
+            /*
+             * 作品名
+             */
+
+            const title =
+                document.createElement("h3");
+
+            title.className =
+                "work-card-title";
+
+            title.textContent =
+                work.title;
+
+
+
+            /*
+             * 作者
+             */
+
+            const author =
+                document.createElement("p");
+
+            author.className =
+                "work-card-author";
+
+            author.textContent =
+                "作者：" + (work.author || "不明");
+
+
+
+            /*
+             * 評価
+             */
+
+            const ratings =
+                document.createElement("div");
+
+            ratings.className =
+                "work-card-ratings";
+
+
+
+            const tsMain =
+                document.createElement("p");
+
+            tsMain.innerHTML =
+                "TS主役度 " +
+                "<span>" +
+                createStars(work.tsMain || 0) +
+                "</span>";
+
+
+
+            const recommendation =
+                document.createElement("p");
+
+            recommendation.innerHTML =
+                "おすすめ度 " +
+                "<span>" +
+                createStars(work.recommendation || 0) +
+                "</span>";
+
+
+
+            ratings.appendChild(tsMain);
+            ratings.appendChild(recommendation);
+
+
+
+            /*
+             * カードに追加
+             */
+
+            body.appendChild(catchphrase);
+            body.appendChild(title);
+            body.appendChild(author);
+            body.appendChild(ratings);
+
+            card.appendChild(imageArea);
+            card.appendChild(body);
+
+
+            return card;
+
+        }
+
+
+
+        /*
+         * ------------------------------------------
+         * 作品一覧を表示
+         * ------------------------------------------
+         */
+
+        function displayWorks(list) {
+
+            container.innerHTML = "";
+
+
+
+            if (!list || list.length === 0) {
+
+                noResults.style.display = "block";
+
+                resultCount.textContent =
+                    "0作品";
+
+                return;
+
+            }
+
+
+            noResults.style.display = "none";
+
+
+
+            resultCount.textContent =
+                list.length + "作品";
+
+
+
+            list.forEach(function (work) {
+
+                container.appendChild(
+                    createWorkCard(work)
+                );
+
+            });
+
+        }
+
+
+
+        /*
+         * ------------------------------------------
+         * 絞り込み
+         * ------------------------------------------
+         */
+
+        function filterWorks() {
+
+            const searchWord =
+                document
+                    .getElementById("work-search")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+
+            const media =
+                document
+                    .getElementById("media-filter")
+                    .value;
+
+
+
+            const tsType =
+                document
+                    .getElementById("ts-filter")
+                    .value;
+
+
+
+            const derivative =
+                document
+                    .getElementById("derivative-filter")
+                    .value;
+
+
+
+            const status =
+                document
+                    .getElementById("status-filter")
+                    .value;
+
+
+
+            const genre =
+                document
+                    .getElementById("genre-filter")
+                    .value;
+
+
+
+            const filtered =
+                works.filter(function (work) {
+
+
+                    /*
+                     * キーワード検索
+                     */
+
+                    if (searchWord) {
+
+                        const searchableText = [
+
+                            work.title,
+                            work.author,
+                            work.site,
+                            work.originalWork,
+                            work.catchphrase,
+                            work.summary,
+                            work.points,
+                            work.comment,
+
+                            ...(work.tsType || []),
+                            ...(work.genres || [])
+
+                        ]
+                            .join(" ")
+                            .toLowerCase();
+
+
+                        if (
+                            !searchableText.includes(searchWord)
+                        ) {
+
+                            return false;
+
+                        }
+
+                    }
+
+
+
+                    /*
+                     * 作品種別
+                     */
+
+                    if (
+                        media &&
+                        work.media !== media
+                    ) {
+
+                        return false;
+
+                    }
+
+
+
+                    /*
+                     * TS形式
+                     */
+
+                    if (
+                        tsType &&
+                        !(work.tsType || []).includes(tsType)
+                    ) {
+
+                        return false;
+
+                    }
+
+
+
+                    /*
+                     * 作品区分
+                     */
+
+                    if (
+                        derivative &&
+                        work.derivative !== derivative
+                    ) {
+
+                        return false;
+
+                    }
+
+
+
+                    /*
+                     * 完結状況
+                     */
+
+                    if (
+                        status &&
+                        work.status !== status
+                    ) {
+
+                        return false;
+
+                    }
+
+
+
+                    /*
+                     * ジャンル
+                     */
+
+                    if (
+                        genre &&
+                        !(work.genres || []).includes(genre)
+                    ) {
+
+                        return false;
+
+                    }
+
+
+
+                    return true;
+
+                });
+
+
+
+            displayWorks(filtered);
+
+        }
+
+
+
+        /*
+         * ------------------------------------------
+         * 絞り込みボタン
+         * ------------------------------------------
+         */
+
+        document
+            .getElementById("filter-button")
+            .addEventListener(
+                "click",
+                filterWorks
+            );
+
+
+
+        /*
+         * ------------------------------------------
+         * 検索ボタン
+         * ------------------------------------------
+         */
+
+        document
+            .getElementById("search-button")
+            .addEventListener(
+                "click",
+                filterWorks
+            );
+
+
+
+        /*
+         * Enterキーでも検索
+         */
+
+        document
+            .getElementById("work-search")
+            .addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (event.key === "Enter") {
+
+                        filterWorks();
+
+                    }
+
+                }
+            );
+
+
+
+        /*
+         * ------------------------------------------
+         * 初期表示
+         * ------------------------------------------
+         */
+
+        displayWorks(works);
+
+    </script>
+
+
+</body>
+
+</html>

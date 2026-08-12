@@ -8,6 +8,9 @@ const works = [
         site: "ハーメルン",
         url: "#",
 
+        // 追加日
+        addedDate: "2026-08-13",
+
         // 作品種別
         media: "小説",
         derivative: "二次創作",

@@ -1,19 +1,367 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
-    <title>TS作品紹介</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TS作品図鑑</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>TS作品紹介サイト</h1>
+    <!-- ==============================
+         ヘッダー
+    =============================== -->
+    <header>
 
-<p>ここはTS作品を紹介する個人サイトです。</p>
+        <div class="site-header">
 
-<h2>おすすめ作品</h2>
+            <div class="site-title">
+                <h1>TS作品図鑑</h1>
+                <p>あなたの知らないTS作品を見つけよう。</p>
+            </div>
 
-<p>現在準備中……</p>
+            <div class="site-info">
+                <span>掲載作品数：<strong id="work-count">0</strong>作品</span>
+            </div>
+
+            <div class="search-box">
+                <input
+                    type="search"
+                    id="search-input"
+                    placeholder="作品名・作者名・原作などを検索"
+                >
+                <button id="search-button">検索</button>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==============================
+         ページ内移動
+    =============================== -->
+    <nav class="page-navigation">
+
+        <a href="#new">新着作品</a>
+        <a href="#notice">お知らせ</a>
+        <a href="#search">作品を探す</a>
+        <a href="#works">作品一覧</a>
+        <a href="#about">サイトについて</a>
+        <a href="#forum">質問・フォーラム</a>
+
+    </nav>
+
+
+    <main>
+
+
+        <!-- ==============================
+             新着TS小説
+        =============================== -->
+        <section id="new-novel" class="content-section">
+
+            <div class="section-heading">
+                <h2>新着TS小説</h2>
+                <p>最近追加されたTS小説</p>
+            </div>
+
+            <div id="new-novel-container" class="works-container">
+                <!-- JavaScriptで自動生成 -->
+            </div>
+
+            <div class="more-button-area">
+                <a href="novels.html" class="more-button">
+                    もっと見る
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             新着TS漫画
+        =============================== -->
+        <section id="new-manga" class="content-section">
+
+            <div class="section-heading">
+                <h2>新着TS漫画</h2>
+                <p>最近追加されたTS漫画</p>
+            </div>
+
+            <div id="new-manga-container" class="works-container">
+                <!-- JavaScriptで自動生成 -->
+            </div>
+
+            <div class="more-button-area">
+                <a href="manga.html" class="more-button">
+                    もっと見る
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             新着TSアニメ
+        =============================== -->
+        <section id="new-anime" class="content-section">
+
+            <div class="section-heading">
+                <h2>新着TSアニメ</h2>
+                <p>最近追加されたTSアニメ</p>
+            </div>
+
+            <div id="new-anime-container" class="works-container">
+                <!-- JavaScriptで自動生成 -->
+            </div>
+
+            <div class="more-button-area">
+                <a href="anime.html" class="more-button">
+                    もっと見る
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             管理者からのお知らせ
+        =============================== -->
+        <section id="notice" class="content-section">
+
+            <div class="section-heading">
+                <h2>管理者からのお知らせ</h2>
+            </div>
+
+            <div class="notice-box">
+
+                <article class="notice-item">
+                    <time>2026/08/12</time>
+                    <p>
+                        TS作品図鑑を公開しました。
+                    </p>
+                </article>
+
+                <article class="notice-item">
+                    <time>2026/08/12</time>
+                    <p>
+                        現在、サイトを試験運用中です。
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             作品を探す
+        =============================== -->
+        <section id="search" class="content-section">
+
+            <div class="section-heading">
+                <h2>作品を探す</h2>
+                <p>条件を組み合わせて、お気に入りのTS作品を探せます。</p>
+            </div>
+
+            <div class="search-panel">
+
+                <div class="search-panel-row">
+
+                    <label>
+                        作品種別
+                        <select id="media-filter">
+                            <option value="">すべて</option>
+                            <option value="小説">小説</option>
+                            <option value="漫画">漫画</option>
+                            <option value="アニメ">アニメ</option>
+                        </select>
+                    </label>
+
+
+                    <label>
+                        TS形式
+                        <select id="ts-filter">
+                            <option value="">すべて</option>
+                            <option value="男→女">男→女</option>
+                            <option value="女→男">女→男</option>
+                            <option value="可逆TS">可逆TS</option>
+                            <option value="不可逆TS">不可逆TS</option>
+                            <option value="複数人TS">複数人TS</option>
+                            <option value="憑依">憑依</option>
+                            <option value="TSF">TSF</option>
+                            <option value="皮もの">皮もの</option>
+                            <option value="前世思い出し">前世思い出し</option>
+                            <option value="入れ替わり">入れ替わり</option>
+                            <option value="変身">変身</option>
+                            <option value="朝おん">朝おん</option>
+                            <option value="朝おと">朝おと</option>
+                            <option value="TST">TST</option>
+                            <option value="TSM">TSM</option>
+                            <option value="メス堕ち">メス堕ち</option>
+                        </select>
+                    </label>
+
+
+                    <label>
+                        作品区分
+                        <select id="derivative-filter">
+                            <option value="">すべて</option>
+                            <option value="オリジナル">オリジナル</option>
+                            <option value="二次創作">二次創作</option>
+                        </select>
+                    </label>
+
+                </div>
+
+
+                <div class="search-panel-row">
+
+                    <label>
+                        完結状況
+                        <select id="status-filter">
+                            <option value="">すべて</option>
+                            <option value="完結">完結</option>
+                            <option value="連載中">連載中</option>
+                            <option value="休載">休載</option>
+                        </select>
+                    </label>
+
+
+                    <label>
+                        ジャンル
+                        <select id="genre-filter">
+                            <option value="">すべて</option>
+                            <option value="ファンタジー">ファンタジー</option>
+                            <option value="SF">SF</option>
+                            <option value="アクション">アクション</option>
+                            <option value="恋愛">恋愛</option>
+                            <option value="コメディ">コメディ</option>
+                            <option value="日常">日常</option>
+                            <option value="ミステリー">ミステリー</option>
+                            <option value="ホラー">ホラー</option>
+                            <option value="歴史">歴史</option>
+                            <option value="スポーツ">スポーツ</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </label>
+
+
+                    <button id="filter-button">
+                        この条件で探す
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             TS作品一覧
+        =============================== -->
+        <section id="works" class="content-section">
+
+            <div class="section-heading">
+                <h2>TS作品一覧</h2>
+                <p>登録されている作品からおすすめを紹介</p>
+            </div>
+
+
+            <div id="works-container" class="works-container">
+                <!-- JavaScriptで自動生成 -->
+            </div>
+
+
+            <div class="more-button-area">
+                <a href="works.html" class="more-button">
+                    すべての作品を見る
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             サイトについて
+        =============================== -->
+        <section id="about" class="content-section">
+
+            <div class="section-heading">
+                <h2>TS作品図鑑とは</h2>
+            </div>
+
+            <div class="text-box">
+
+                <p>
+                    TS作品図鑑は、TS（性別転換・トランスセクシュアル等）を
+                    扱った小説・漫画・アニメなどの作品を紹介する個人運営の
+                    データベースサイトです。
+                </p>
+
+                <p>
+                    TS作品を探している方が、自分に合った作品を見つけられる
+                    ことを目指しています。
+                </p>
+
+                <p>
+                    作品の評価やコメントは管理者個人の感想に基づくものであり、
+                    各作品の作者・掲載サイトとは関係ありません。
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             質問・フォーラム
+        =============================== -->
+        <section id="forum" class="content-section">
+
+            <div class="section-heading">
+                <h2>質問・フォーラム</h2>
+                <p>サイトや作品についての質問・情報提供はこちら</p>
+            </div>
+
+            <div class="forum-box">
+
+                <p>
+                    現在準備中です。
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         フッター
+    =============================== -->
+    <footer>
+
+        <p>
+            © 2026 TS作品図鑑
+        </p>
+
+    </footer>
+
+
+    <!-- ==============================
+         JavaScript
+    =============================== -->
+
+    <script src="data/works.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>

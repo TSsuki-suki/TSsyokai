@@ -96,19 +96,35 @@ header {
    ナビゲーション
    ========================================================= */
 
-.site-nav {
+/*
+   .site-nav が付いているページだけでなく、
+   トップページの nav にも適用されるようにしています。
+*/
+
+.site-nav,
+header nav,
+body > nav {
     border-top: 1px solid #eee;
 
     background: #fff;
 
     display: flex;
     justify-content: center;
+    align-items: stretch;
+
     flex-wrap: wrap;
 
     gap: 0;
+
+    width: 100%;
 }
 
-.site-nav a {
+
+/* ナビゲーションのリンク */
+
+.site-nav a,
+header nav a,
+body > nav a {
     display: block;
 
     padding: 13px 20px;
@@ -125,11 +141,21 @@ header {
         color 0.2s;
 }
 
-.site-nav a:first-child {
+
+/* 最初のリンクの左線 */
+
+.site-nav a:first-child,
+header nav a:first-child,
+body > nav a:first-child {
     border-left: 1px solid #eee;
 }
 
-.site-nav a:hover {
+
+/* ホバー */
+
+.site-nav a:hover,
+header nav a:hover,
+body > nav a:hover {
     background: #f2edf8;
     color: #4b2e72;
 }
@@ -637,6 +663,304 @@ main {
 }
 
 
+/* ---------------------------------------------------------
+   個別ページ：基本情報
+   --------------------------------------------------------- */
+
+/*
+   work.jsでは
+
+   [画像] [作品情報]
+
+   の順番でHTMLが生成されています。
+
+   row-reverse にすることで、
+
+   [作品情報] [画像]
+
+   の配置にします。
+*/
+
+.work-detail-basic {
+    display: flex;
+
+    flex-direction: row-reverse;
+
+    align-items: flex-start;
+
+    gap: 35px;
+
+    margin-top: 25px;
+}
+
+
+/* 個別ページ画像 */
+
+.work-detail-image {
+    width: 240px;
+    height: 336px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #eeeeF1;
+
+    border-radius: 8px;
+
+    color: #999;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+/* 実際の画像 */
+
+.work-detail-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* NO IMAGE */
+
+.no-image-large {
+    color: #999;
+}
+
+
+/* 個別ページ情報 */
+
+.work-detail-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+/* 個別ページ情報の各行 */
+
+.work-detail-info p {
+    margin: 0 0 15px;
+
+    font-size: 16px;
+}
+
+.work-detail-info p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* 個別ページのキャッチコピー */
+
+.work-detail-catchphrase {
+    margin: 0 0 8px;
+
+    color: #6b4592;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+/* 個別ページタイトル */
+
+.work-detail-title {
+    margin: 0;
+
+    color: #333;
+
+    font-size: 32px;
+    line-height: 1.4;
+}
+
+
+/* ---------------------------------------------------------
+   個別ページ：各ブロック
+   --------------------------------------------------------- */
+
+.work-detail-block {
+    margin-top: 45px;
+
+    padding-top: 30px;
+
+    border-top: 1px solid #eee;
+}
+
+.work-detail-block h2 {
+    margin: 0 0 20px;
+
+    padding-left: 12px;
+
+    border-left: 4px solid #6d4a91;
+
+    font-size: 23px;
+}
+
+.work-detail-block h3 {
+    margin: 0 0 10px;
+
+    font-size: 18px;
+}
+
+
+/* 評価 */
+
+.work-rating {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 25px;
+}
+
+.work-rating-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.stars {
+    color: #e0a800;
+
+    letter-spacing: 2px;
+}
+
+
+/* TS形式 */
+
+.ts-type-list {
+    margin: 0;
+
+    padding-left: 25px;
+}
+
+
+/* ジャンル */
+
+.genre-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.genre-tag {
+    display: inline-block;
+
+    padding: 6px 13px;
+
+    background: #f2edf8;
+
+    border: 1px solid #d8cbe5;
+
+    border-radius: 20px;
+
+    color: #5d3e7d;
+
+    font-size: 14px;
+}
+
+
+/* あらすじ等 */
+
+.work-summary,
+.work-points,
+.work-comment {
+    margin: 0;
+
+    line-height: 1.9;
+}
+
+
+/* ---------------------------------------------------------
+   個別ページ：読むボタン
+   --------------------------------------------------------- */
+
+.work-read-area {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 45px;
+}
+
+.work-read-button {
+    display: inline-block;
+
+    min-width: 200px;
+
+    padding: 13px 25px;
+
+    background: #4a4a4a;
+
+    color: #fff;
+
+    text-align: center;
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.work-read-button:hover {
+    background: #5d4572;
+
+    color: #fff;
+
+    transform: translateY(-1px);
+}
+
+
+/* ---------------------------------------------------------
+   個別ページ：戻るボタン
+   --------------------------------------------------------- */
+
+.work-back-area {
+    margin-top: 30px;
+
+    text-align: center;
+}
+
+.back-button {
+    color: #666;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.back-button:hover {
+    color: #5d3e7d;
+}
+
+
+/* エラー */
+
+.work-error {
+    text-align: center;
+
+    padding: 50px 20px;
+}
+
+
 /* =========================================================
    フッター
    ========================================================= */
@@ -702,12 +1026,19 @@ footer p {
 
     /* ナビ */
 
-    .site-nav {
+    .site-nav,
+    header nav,
+    body > nav {
         justify-content: flex-start;
+
         overflow-x: auto;
+
+        flex-wrap: nowrap;
     }
 
-    .site-nav a {
+    .site-nav a,
+    header nav a,
+    body > nav a {
         flex-shrink: 0;
 
         padding: 11px 14px;
@@ -804,10 +1135,57 @@ footer p {
     }
 
 
-    /* 個別ページ */
+    /* =====================================================
+       個別ページ：スマホ
+       ===================================================== */
 
     .work-detail {
         padding: 20px;
+    }
+
+
+    /*
+       スマホでは画像を右に固定せず、
+       情報の上に画像を表示します。
+    */
+
+    .work-detail-basic {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+
+    .work-detail-image {
+        width: 100%;
+
+        max-width: 300px;
+
+        height: 400px;
+
+        margin: 0 auto;
+    }
+
+
+    .work-detail-title {
+        font-size: 26px;
+    }
+
+
+    .work-detail-catchphrase {
+        font-size: 17px;
+    }
+
+
+    .work-detail-block h2 {
+        font-size: 21px;
+    }
+
+
+    .work-rating {
+        flex-direction: column;
+
+        gap: 12px;
     }
 }
 
@@ -828,5 +1206,10 @@ footer p {
 
     .work-image {
         height: 160px;
+    }
+
+
+    .work-detail-image {
+        height: 350px;
     }
 }

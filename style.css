@@ -1,6 +1,12 @@
-/* =========================
-   TS作品図鑑 - 基本スタイル
-   ========================= */
+/* =========================================================
+   TS作品図鑑
+   基本スタイル
+   ========================================================= */
+
+
+/* =========================================================
+   基本設定
+   ========================================================= */
 
 * {
     box-sizing: border-box;
@@ -12,6 +18,7 @@ html {
 
 body {
     margin: 0;
+
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -19,130 +26,382 @@ body {
         "Yu Gothic",
         "Hiragino Kaku Gothic ProN",
         sans-serif;
-    background: #f7f7f9;
+
+    background: #f6f6f8;
     color: #333;
+
     line-height: 1.7;
 }
 
-/* =========================
+
+/* リンク */
+
+a {
+    color: #5b3a8e;
+}
+
+a:hover {
+    color: #7b55b5;
+}
+
+
+/* =========================================================
    ヘッダー
-   ========================= */
+   ========================================================= */
 
 header {
     background: #ffffff;
     border-bottom: 1px solid #ddd;
 }
 
+
+/* サイトタイトル */
+
 .site-header {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 24px 20px;
+
+    padding: 28px 20px 22px;
 }
 
-.site-title {
-    font-size: 28px;
-    font-weight: bold;
+.site-header h1 {
     margin: 0;
 }
 
-.site-description {
-    color: #777;
-    margin-top: 5px;
+.site-header h1 a {
+    color: #4b2e72;
+    text-decoration: none;
+
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
 }
 
-/* =========================
+.site-header h1 a:hover {
+    color: #6d469e;
+}
+
+
+/* サイト説明 */
+
+.site-description {
+    margin: 5px 0 0;
+
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ナビゲーション
+   ========================================================= */
+
+.site-nav {
+    border-top: 1px solid #eee;
+
+    background: #fff;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 0;
+}
+
+.site-nav a {
+    display: block;
+
+    padding: 13px 20px;
+
+    color: #444;
+    text-decoration: none;
+
+    font-size: 15px;
+
+    border-right: 1px solid #eee;
+
+    transition:
+        background 0.2s,
+        color 0.2s;
+}
+
+.site-nav a:first-child {
+    border-left: 1px solid #eee;
+}
+
+.site-nav a:hover {
+    background: #f2edf8;
+    color: #4b2e72;
+}
+
+
+/* =========================================================
    メイン
-   ========================= */
+   ========================================================= */
 
 main {
     max-width: 1100px;
+
     margin: 0 auto;
-    padding: 30px 20px;
+
+    padding: 45px 20px 70px;
 }
 
-section {
-    margin-bottom: 50px;
+
+/* 各セクション */
+
+.content-section {
+    margin-bottom: 70px;
 }
 
-section h2 {
-    font-size: 24px;
-    border-left: 5px solid #888;
-    padding-left: 12px;
-    margin-bottom: 20px;
+
+/* =========================================================
+   セクション見出し
+   ========================================================= */
+
+.section-heading {
+    margin-bottom: 25px;
 }
 
-/* =========================
+.section-heading h2 {
+    margin: 0;
+
+    padding-left: 14px;
+
+    border-left: 5px solid #6d4a91;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    color: #333;
+}
+
+.section-heading p {
+    margin: 9px 0 0;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   作品一覧コンテナ
+   ========================================================= */
+
+.works-container {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+
+/* =========================================================
    作品カード
-   ========================= */
+   ========================================================= */
 
 .work-card {
     display: flex;
-    gap: 20px;
-    background: #ffffff;
+
+    gap: 24px;
+
+    padding: 20px;
+
+    background: #fff;
+
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 18px;
-    margin-bottom: 15px;
-    transition: 0.2s;
+
+    color: inherit;
+    text-decoration: none;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
 }
 
 .work-card:hover {
+    color: inherit;
+
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    border-color: #cbb9dc;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.08);
 }
+
+
+/* =========================================================
+   作品画像
+   ========================================================= */
 
 .work-image {
     width: 150px;
     height: 210px;
-    background: #eee;
-    border-radius: 6px;
+
     flex-shrink: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    overflow: hidden;
+
+    background: #eeeeF1;
+
+    border-radius: 7px;
+
     color: #999;
+
+    font-size: 13px;
+    text-align: center;
 }
+
+.work-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   作品情報
+   ========================================================= */
 
 .work-info {
     flex: 1;
+
+    min-width: 0;
 }
+
+
+/* キャッチコピー */
 
 .work-recommend {
+    margin: 0 0 5px;
+
+    color: #6b4592;
+
     font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 700;
+
+    line-height: 1.5;
 }
 
+
+/* 作品名 */
+
 .work-title {
-    font-size: 24px;
-    font-weight: bold;
     margin: 0 0 12px;
+
+    color: #333;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    line-height: 1.4;
 }
+
+
+/* 作者など */
 
 .work-meta {
     display: flex;
-    gap: 10px;
     flex-wrap: wrap;
+
+    gap: 8px 15px;
+
     margin-top: 15px;
+
+    color: #666;
+
+    font-size: 14px;
 }
+
+
+/* 評価 */
 
 .rating {
-    font-weight: bold;
+    font-weight: 700;
+
+    color: #444;
 }
 
-/* =========================
-   お知らせ
-   ========================= */
 
-.notice {
-    background: #ffffff;
+/* 星 */
+
+.rating-stars {
+    color: #e0a800;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   「もっと見る」ボタン
+   ========================================================= */
+
+.more-button-area {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 28px;
+}
+
+.more-button {
+    display: inline-block;
+
+    min-width: 170px;
+
+    padding: 12px 28px;
+
+    background: #4a4a4a;
+
+    color: #fff;
+    text-decoration: none;
+
+    text-align: center;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.more-button:hover {
+    background: #5d4572;
+    color: #fff;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   お知らせ
+   ========================================================= */
+
+.notice-box {
+    background: #fff;
+
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 20px;
+
+    padding: 8px 22px;
 }
 
 .notice-item {
-    padding: 10px 0;
+    padding: 15px 0;
+
     border-bottom: 1px solid #eee;
 }
 
@@ -150,104 +409,424 @@ section h2 {
     border-bottom: none;
 }
 
-/* =========================
-   検索
-   ========================= */
+.notice-item time {
+    display: inline-block;
+
+    margin-right: 15px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+.notice-item p {
+    display: inline;
+
+    margin: 0;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   検索・条件
+   ========================================================= */
+
+.search-panel {
+    padding: 25px;
+
+    background: #fff;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.search-panel-row {
+    display: flex;
+
+    align-items: end;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-bottom: 15px;
+}
+
+.search-panel-row:last-child {
+    margin-bottom: 0;
+}
+
+.search-panel label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    color: #555;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.search-panel select {
+    min-width: 150px;
+
+    padding: 9px 11px;
+
+    background: #fff;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    color: #333;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.search-panel select:focus {
+    outline: none;
+
+    border-color: #8a6aa5;
+
+    box-shadow: 0 0 0 2px rgba(109, 74, 145, 0.12);
+}
+
+#filter-button {
+    padding: 10px 22px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #4a4a4a;
+
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background 0.2s;
+}
+
+#filter-button:hover {
+    background: #5d4572;
+}
+
+
+/* =========================================================
+   通常の検索ボックス
+   ========================================================= */
 
 .search-box {
     display: flex;
+
     gap: 10px;
+
     margin: 20px 0;
 }
 
 .search-box input {
     flex: 1;
-    padding: 12px;
+
+    min-width: 0;
+
+    padding: 11px 14px;
+
     border: 1px solid #ccc;
     border-radius: 6px;
+
+    background: #fff;
+
     font-size: 16px;
 }
 
+.search-box input:focus {
+    outline: none;
+
+    border-color: #8a6aa5;
+
+    box-shadow: 0 0 0 2px rgba(109, 74, 145, 0.12);
+}
+
 .search-box button {
-    padding: 12px 22px;
+    padding: 11px 24px;
+
     border: none;
     border-radius: 6px;
+
     background: #444;
-    color: white;
+
+    color: #fff;
+
+    font-size: 15px;
+
     cursor: pointer;
 }
 
-/* =========================
-   ジャンル・条件
-   ========================= */
+.search-box button:hover {
+    background: #5d4572;
+}
+
+
+/* =========================================================
+   カテゴリー
+   ========================================================= */
 
 .category-list {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 10px;
 }
 
 .category-list a {
     display: inline-block;
-    padding: 8px 15px;
-    background: white;
-    border: 1px solid #ddd;
+
+    padding: 7px 15px;
+
+    background: #fff;
+
+    border: 1px solid #d8d2df;
     border-radius: 20px;
-    color: #444;
+
+    color: #555;
+
     text-decoration: none;
+
+    font-size: 14px;
+
+    transition:
+        background 0.2s,
+        color 0.2s;
 }
 
 .category-list a:hover {
-    background: #eee;
+    background: #f0eaf5;
+
+    color: #5d3e7d;
 }
 
-/* =========================
-   ボタン
-   ========================= */
 
-.more-button {
-    display: block;
-    width: fit-content;
-    margin: 25px auto 0;
-    padding: 12px 30px;
-    background: #444;
-    color: white;
-    border-radius: 6px;
-    text-decoration: none;
+/* =========================================================
+   作品個別ページ
+   ========================================================= */
+
+.work-detail-section {
+    max-width: 900px;
+
+    margin: 0 auto;
 }
 
-/* =========================
+
+/* 個別ページのカード */
+
+.work-detail {
+    background: #fff;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    padding: 30px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
    フッター
-   ========================= */
+   ========================================================= */
 
 footer {
     background: #333;
-    color: white;
+
+    color: #fff;
+
     text-align: center;
-    padding: 30px 20px;
-    margin-top: 50px;
+
+    padding: 35px 20px;
+
+    margin-top: 20px;
 }
 
-/* =========================
-   スマートフォン対応
-   ========================= */
+footer p {
+    margin: 0;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   ページ上部へ戻る
+   ========================================================= */
+
+.back-to-top {
+    display: block;
+
+    width: fit-content;
+
+    margin: 30px auto 0;
+
+    color: #666;
+
+    font-size: 14px;
+
+    text-decoration: none;
+}
+
+.back-to-top:hover {
+    color: #5d3e7d;
+}
+
+
+/* =========================================================
+   スマートフォン
+   ========================================================= */
 
 @media (max-width: 700px) {
 
+    /* ヘッダー */
+
+    .site-header {
+        padding: 22px 15px 18px;
+    }
+
+    .site-header h1 a {
+        font-size: 26px;
+    }
+
+
+    /* ナビ */
+
+    .site-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+
+    .site-nav a {
+        flex-shrink: 0;
+
+        padding: 11px 14px;
+
+        font-size: 13px;
+    }
+
+
+    /* メイン */
+
+    main {
+        padding: 30px 14px 50px;
+    }
+
+
+    /* 見出し */
+
+    .section-heading h2 {
+        font-size: 22px;
+    }
+
+
+    /* 作品カード */
+
     .work-card {
         flex-direction: column;
+
+        gap: 15px;
+
+        padding: 15px;
     }
+
 
     .work-image {
         width: 100%;
-        height: 180px;
+        height: 190px;
     }
+
+
+    .work-recommend {
+        font-size: 18px;
+    }
+
 
     .work-title {
         font-size: 21px;
     }
 
-    .site-title {
-        font-size: 24px;
+
+    /* 検索 */
+
+    .search-panel {
+        padding: 18px;
+    }
+
+    .search-panel-row {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
+    }
+
+    .search-panel label {
+        width: 100%;
+    }
+
+    .search-panel select {
+        width: 100%;
+    }
+
+    #filter-button {
+        width: 100%;
+    }
+
+
+    /* 通常検索 */
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box button {
+        width: 100%;
+    }
+
+
+    /* お知らせ */
+
+    .notice-item time {
+        display: block;
+
+        margin-bottom: 3px;
+    }
+
+
+    /* 個別ページ */
+
+    .work-detail {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   小型スマートフォン
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .site-header h1 a {
+        font-size: 23px;
+    }
+
+    .section-heading h2 {
+        font-size: 20px;
+    }
+
+    .work-image {
+        height: 160px;
     }
 }

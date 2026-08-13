@@ -553,6 +553,7 @@ document.addEventListener(
         // --------------------------------
 
         renderWork(work);
+        saveBrowsingHistory(work.id);
 
     }
 

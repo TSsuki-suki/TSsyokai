@@ -349,6 +349,196 @@ function renderMainWorks() {
 
 
 // ========================================
+// 上部検索
+// ========================================
+
+function setupTopSearch() {
+
+    const searchInput =
+        document.getElementById(
+            "search-input"
+        );
+
+    const searchButton =
+        document.getElementById(
+            "search-button"
+        );
+
+
+    // 検索欄またはボタンが存在しない場合
+
+    if (!searchInput || !searchButton) {
+        return;
+    }
+
+
+
+    // ------------------------------------
+    // 検索処理
+    // ------------------------------------
+
+    function executeSearch() {
+
+        const keyword =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+
+        // --------------------------------
+        // 検索語が空の場合
+        // --------------------------------
+
+        if (!keyword) {
+
+            const newestWorks =
+                [...works]
+                .sort((a, b) => b.id - a.id)
+                .slice(0, 5);
+
+
+            const worksContainer =
+                document.getElementById(
+                    "works-container"
+                );
+
+
+            renderWorks(
+                newestWorks,
+                worksContainer
+            );
+
+
+            const worksSection =
+                document.getElementById(
+                    "works"
+                );
+
+
+            if (worksSection) {
+
+                worksSection.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }
+
+            return;
+        }
+
+
+
+        // --------------------------------
+        // キーワード検索
+        // --------------------------------
+
+        const filteredWorks =
+            works.filter(function(work) {
+
+
+                // 検索対象をまとめる
+
+                const searchableText = [
+
+                    work.title,
+
+                    work.author,
+
+                    work.originalWork,
+
+                    work.site,
+
+                    work.catchphrase
+
+                ]
+                .filter(value => value)
+                .join(" ")
+                .toLowerCase();
+
+
+
+                // キーワードを含んでいるか
+
+                return searchableText.includes(
+                    keyword
+                );
+
+            });
+
+
+
+        // --------------------------------
+        // 検索結果を表示
+        // --------------------------------
+
+        const worksContainer =
+            document.getElementById(
+                "works-container"
+            );
+
+
+        renderWorks(
+            filteredWorks,
+            worksContainer
+        );
+
+
+
+        // --------------------------------
+        // 「TS作品一覧」まで移動
+        // --------------------------------
+
+        const worksSection =
+            document.getElementById(
+                "works"
+            );
+
+
+        if (worksSection) {
+
+            worksSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+    }
+
+
+
+    // ------------------------------------
+    // 検索ボタン
+    // ------------------------------------
+
+    searchButton.addEventListener(
+        "click",
+        executeSearch
+    );
+
+
+
+    // ------------------------------------
+    // Enterキー
+    // ------------------------------------
+
+    searchInput.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                executeSearch();
+
+            }
+
+        }
+    );
+
+}
+
+
+
+// ========================================
 // 条件検索
 // ========================================
 
@@ -535,10 +725,19 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
 
+        // 新着作品を表示
         renderNewWorks();
 
+
+        // 通常の作品一覧を表示
         renderMainWorks();
 
+
+        // 上部検索を有効化
+        setupTopSearch();
+
+
+        // 条件検索を有効化
         setupSearch();
 
     }

@@ -555,4 +555,38 @@ document.addEventListener(
         renderWork(work);
 
     }
+
+
+
+    // ========================================
+// 閲覧履歴を保存
+// ========================================
+
+function saveBrowsingHistory(workId) {
+
+    let history = JSON.parse(
+        localStorage.getItem("ts-work-history") || "[]"
+    );
+
+
+    // すでに履歴に存在する場合は一度削除
+    history = history.filter(
+        id => id !== workId
+    );
+
+
+    // 一番上に追加
+    history.unshift(workId);
+
+
+    // 最大10作品まで
+    history = history.slice(0, 10);
+
+
+    // 保存
+    localStorage.setItem(
+        "ts-work-history",
+        JSON.stringify(history)
+    );
+}
 );

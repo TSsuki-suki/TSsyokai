@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TS漫画一覧｜TS作品図鑑</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ==============================
+         ヘッダー
+    =============================== -->
+
+    <header class="site-header">
+
+        <div class="site-header-inner">
+
+            <h1>
+                <a href="index.html">
+                    TS作品図鑑
+                </a>
+            </h1>
+
+            <p class="work-count">
+                登録作品数：<span id="total-count">0</span>作品
+            </p>
+
+            <form class="header-search" onsubmit="return false;">
+
+                <input
+                    type="search"
+                    id="header-search"
+                    placeholder="作品名・作者名などを検索"
+                >
+
+                <button
+                    type="button"
+                    id="header-search-button"
+                >
+                    検索
+                </button>
+
+            </form>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==============================
+         ナビゲーション
+    =============================== -->
+
+    <nav class="site-nav">
+
+        <a href="index.html">トップ</a>
+
+        <a href="index.html#notice">
+            お知らせ
+        </a>
+
+        <a href="index.html#search">
+            作品を探す
+        </a>
+
+        <a href="works.html">
+            作品一覧
+        </a>
+
+        <a href="index.html#about">
+            サイトについて
+        </a>
+
+        <a href="index.html#forum">
+            質問・フォーラム
+        </a>
+
+    </nav>
+
+
+    <!-- ==============================
+         メイン
+    =============================== -->
+
+    <main class="main-content">
+
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <h2>TS漫画一覧</h2>
+
+                <p>
+                    TS作品図鑑に登録されているTS漫画を一覧できます。
+                </p>
+
+            </div>
+
+
+            <!-- ==============================
+                 絞り込み
+            =============================== -->
+
+            <div class="search-panel">
+
+                <div class="search-panel-row">
+
+                    <label>
+                        TS形式
+
+                        <select id="ts-filter">
+
+                            <option value="">すべて</option>
+
+                            <option value="男→女">男→女</option>
+                            <option value="女→男">女→男</option>
+                            <option value="可逆TS">可逆TS</option>
+                            <option value="不可逆TS">不可逆TS</option>
+                            <option value="複数人TS">複数人TS</option>
+                            <option value="憑依">憑依</option>
+                            <option value="TSF">TSF</option>
+                            <option value="皮もの">皮もの</option>
+                            <option value="前世思い出し">前世思い出し</option>
+                            <option value="入れ替わり">入れ替わり</option>
+                            <option value="変身">変身</option>
+                            <option value="朝おん">朝おん</option>
+                            <option value="朝おと">朝おと</option>
+                            <option value="TST">TST</option>
+                            <option value="TSM">TSM</option>
+                            <option value="メス堕ち">メス堕ち</option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        作品区分
+
+                        <select id="derivative-filter">
+
+                            <option value="">すべて</option>
+
+                            <option value="オリジナル">
+                                オリジナル
+                            </option>
+
+                            <option value="二次創作">
+                                二次創作
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        完結状況
+
+                        <select id="status-filter">
+
+                            <option value="">すべて</option>
+
+                            <option value="完結">
+                                完結
+                            </option>
+
+                            <option value="連載中">
+                                連載中
+                            </option>
+
+                            <option value="休載">
+                                休載
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        ジャンル
+
+                        <select id="genre-filter">
+
+                            <option value="">すべて</option>
+
+                            <option value="ファンタジー">
+                                ファンタジー
+                            </option>
+
+                            <option value="SF">
+                                SF
+                            </option>
+
+                            <option value="アクション">
+                                アクション
+                            </option>
+
+                            <option value="恋愛">
+                                恋愛
+                            </option>
+
+                            <option value="コメディ">
+                                コメディ
+                            </option>
+
+                            <option value="日常">
+                                日常
+                            </option>
+
+                            <option value="ミステリー">
+                                ミステリー
+                            </option>
+
+                            <option value="ホラー">
+                                ホラー
+                            </option>
+
+                            <option value="歴史">
+                                歴史
+                            </option>
+
+                            <option value="スポーツ">
+                                スポーツ
+                            </option>
+
+                            <option value="その他">
+                                その他
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <button
+                        type="button"
+                        id="filter-button"
+                    >
+                        この条件で探す
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 作品一覧
+            =============================== -->
+
+            <div class="section-heading">
+
+                <h2>登録漫画</h2>
+
+                <p>
+                    <span id="manga-count">0</span>作品
+                </p>
+
+            </div>
+
+
+            <div
+                id="manga-container"
+                class="works-container"
+            >
+                <!-- JavaScriptで自動生成 -->
+            </div>
+
+
+            <!-- ==============================
+                 該当作品なし
+            =============================== -->
+
+            <div
+                id="no-results"
+                style="display: none;"
+            >
+
+                <p>
+                    条件に一致する作品がありません。
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         JavaScript
+    =============================== -->
+
+    <script src="data/works.js"></script>
+    <script src="manga.js"></script>
+
+</body>
+
+</html>

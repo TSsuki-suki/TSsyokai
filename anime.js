@@ -103,9 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
             image.alt =
                 work.title;
 
-            imageArea.appendChild(
-                image
-            );
+            imageArea.appendChild(image);
 
         } else {
 
@@ -259,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==============================
-    // アニメ取得
+    // アニメ取得（media が配列でも文字列でも対応）
     // ==============================
 
     function getAnime() {
@@ -277,8 +275,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return works.filter(
             function (work) {
 
-                return work.media ===
-                       "アニメ";
+                const mediaList = (Array.isArray(work.media)
+                    ? work.media
+                    : (work.media ? [work.media] : [])
+                ).map(m => String(m).trim());
+
+                return mediaList.includes("アニメ");
 
             }
         );

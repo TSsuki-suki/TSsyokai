@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==============================
-    // 漫画取得
+    // 漫画取得（media が配列でも文字列でも対応）
     // ==============================
 
     function getManga() {
@@ -275,8 +275,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return works.filter(
             function (work) {
 
-                return work.media ===
-                       "漫画";
+                const mediaList = Array.isArray(work.media)
+                    ? work.media
+                    : (work.media ? [work.media] : []);
+
+                return mediaList.includes("漫画");
 
             }
         );

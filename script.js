@@ -550,23 +550,94 @@ function setupTopSearch() {
 // 検索
 // ========================================
 
-function setupSearch() {
-
-    const searchButton =
-        document.getElementById(
-            "search-button"
-        );
+// ========================================
+// 検索
+// ========================================
 
 // ========================================
-// トップページの条件検索
+// トップページ：キーワード検索
+// ========================================
+
+function setupKeywordSearch() {
+
+    const searchInput =
+        document.getElementById("search-input");
+
+    const searchButton =
+        document.getElementById("search-button");
+
+
+    if (!searchInput || !searchButton) {
+        return;
+    }
+
+
+    function executeSearch() {
+
+        const keyword =
+            searchInput.value.trim();
+
+
+        // 空欄なら作品一覧へ
+        if (!keyword) {
+
+            window.location.href =
+                "works.html";
+
+            return;
+        }
+
+
+        // 検索語をURLに渡す
+        const params =
+            new URLSearchParams();
+
+        params.set(
+            "search",
+            keyword
+        );
+
+
+        window.location.href =
+            "works.html?" +
+            params.toString();
+
+    }
+
+
+    // 検索ボタン
+    searchButton.addEventListener(
+        "click",
+        executeSearch
+    );
+
+
+    // Enterキー
+    searchInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Enter") {
+
+                executeSearch();
+
+            }
+
+        }
+    );
+
+}
+
+
+
+// ========================================
+// トップページ：条件検索
 // ========================================
 
 function setupFilterSearch() {
 
     const filterButton =
-        document.getElementById(
-            "filter-button"
-        );
+        document.getElementById("filter-button");
 
 
     if (!filterButton) {
@@ -574,10 +645,13 @@ function setupFilterSearch() {
     }
 
 
-
     filterButton.addEventListener(
         "click",
         function () {
+
+            // --------------------------------
+            // 各条件を取得
+            // --------------------------------
 
             const media =
                 document.getElementById(
@@ -609,10 +683,12 @@ function setupFilterSearch() {
                 ).value;
 
 
+            // --------------------------------
+            // URLを作る
+            // --------------------------------
 
             const params =
                 new URLSearchParams();
-
 
 
             if (media) {
@@ -665,6 +741,9 @@ function setupFilterSearch() {
             }
 
 
+            // --------------------------------
+            // works.htmlへ移動
+            // --------------------------------
 
             const query =
                 params.toString();
@@ -686,152 +765,27 @@ function setupFilterSearch() {
     );
 
 }
-    const searchInput =
-        document.getElementById(
-            "search-input"
-        );
-
-
-    if (!searchButton || !searchInput) {
-        return;
-    }
 
 
 
-    // ----------------------------------------
-    // 検索実行
-    // ----------------------------------------
-
-    function executeSearch() {
-
-        const keyword =
-            searchInput.value.trim();
-
-
-        // 検索語が空なら作品一覧へ
-
-        if (!keyword) {
-
-            window.location.href =
-                "works.html";
-
-            return;
-
-        }
-
-
-        // URLに検索語を渡す
-
-        const params =
-            new URLSearchParams();
-
-
-        params.set(
-            "search",
-            keyword
-        );
-
-
-        window.location.href =
-            "works.html?" +
-            params.toString();
-
-    }
-
-
-
-    // ----------------------------------------
-    // 検索ボタン
-    // ----------------------------------------
-
-    searchButton.addEventListener(
-        "click",
-        executeSearch
-    );
-
-
-
-    // ----------------------------------------
-    // Enterキー
-    // ----------------------------------------
-
-    searchInput.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (event.key === "Enter") {
-
-                executeSearch();
-
-            }
-
-        }
-    );
-
-}
 // ========================================
-// キーワード検索
+// ページ読み込み
 // ========================================
 
-function setupKeywordSearch() {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    const searchInput =
-        document.getElementById("search-input");
+        renderNewWorks();
 
-    const searchButton =
-        document.getElementById("search-button");
+        renderMainWorks();
 
+        setupKeywordSearch();
 
-    if (!searchInput || !searchButton) {
-        return;
-    }
-
-
-    function executeSearch() {
-
-        const keyword =
-            searchInput.value.trim();
-
-
-        // 空欄なら作品一覧へ
-        if (!keyword) {
-
-            window.location.href = "works.html";
-
-            return;
-        }
-
-
-        // URLに検索文字列を渡す
-        window.location.href =
-            "works.html?search=" +
-            encodeURIComponent(keyword);
+        setupFilterSearch();
 
     }
-
-
-    // 検索ボタン
-    searchButton.addEventListener(
-        "click",
-        executeSearch
-    );
-
-
-    // Enterキーでも検索
-    searchInput.addEventListener(
-        "keydown",
-        function(event) {
-
-            if (event.key === "Enter") {
-
-                executeSearch();
-
-            }
-
-        }
-    );
-
-}
+);
 
 
 

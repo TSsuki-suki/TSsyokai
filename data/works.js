@@ -117,7 +117,7 @@ const works = [
         url: "#",
 
         // 追加日
-        addedDate: "2026-08-14",
+        addedDate: "2026-08-15",
 
         // 作品種別
         media: "アニメ",
@@ -160,5 +160,5 @@ const works = [
 
         // 画像
         image: ""
-    },
+    }
 ];

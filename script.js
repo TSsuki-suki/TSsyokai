@@ -715,6 +715,70 @@ function setupSearch() {
 
 }
 
+// ========================================
+// キーワード検索
+// ========================================
+
+function setupKeywordSearch() {
+
+    const searchInput =
+        document.getElementById("search-input");
+
+    const searchButton =
+        document.getElementById("search-button");
+
+
+    if (!searchInput || !searchButton) {
+        return;
+    }
+
+
+    function executeSearch() {
+
+        const keyword =
+            searchInput.value.trim();
+
+
+        // 空欄なら作品一覧へ
+        if (!keyword) {
+
+            window.location.href = "works.html";
+
+            return;
+        }
+
+
+        // URLに検索文字列を渡す
+        window.location.href =
+            "works.html?search=" +
+            encodeURIComponent(keyword);
+
+    }
+
+
+    // 検索ボタン
+    searchButton.addEventListener(
+        "click",
+        executeSearch
+    );
+
+
+    // Enterキーでも検索
+    searchInput.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                executeSearch();
+
+            }
+
+        }
+    );
+
+}
+
 
 
 // ========================================
@@ -725,20 +789,14 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        // 新着作品を表示
         renderNewWorks();
 
-
-        // 通常の作品一覧を表示
         renderMainWorks();
 
-
-        // 上部検索を有効化
-        setupTopSearch();
-
-
-        // 条件検索を有効化
         setupSearch();
+
+        setupKeywordSearch();
 
     }
 );
+

@@ -272,22 +272,28 @@ function renderNewWorks() {
         .sort((a, b) => b.id - a.id);
 
 
-    const newestNovels =
-        newestWorks
-        .filter(work => work.media === "小説")
-        .slice(0, 5);
+   const newestNovels =
+    newestWorks
+    .filter(work =>
+        (work.media || []).includes("小説")
+    )
+    .slice(0, 5);
 
 
-    const newestManga =
-        newestWorks
-        .filter(work => work.media === "漫画")
-        .slice(0, 5);
+const newestManga =
+    newestWorks
+    .filter(work =>
+        (work.media || []).includes("漫画")
+    )
+    .slice(0, 5);
 
 
-    const newestAnime =
-        newestWorks
-        .filter(work => work.media === "アニメ")
-        .slice(0, 5);
+const newestAnime =
+    newestWorks
+    .filter(work =>
+        (work.media || []).includes("アニメ")
+    )
+    .slice(0, 5);
 
 
     renderWorks(

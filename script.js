@@ -542,18 +542,83 @@ function setupTopSearch() {
 // 条件検索
 // ========================================
 
+// ========================================
+// 条件検索
+// ========================================
+
 function setupSearch() {
 
     const filterButton =
-        document.getElementById(
-            "filter-button"
-        );
-
+        document.getElementById("filter-button");
 
     if (!filterButton) {
         return;
     }
 
+
+    filterButton.addEventListener(
+        "click",
+        function() {
+
+            // --------------------------------
+            // 選択された条件
+            // --------------------------------
+
+            const media =
+                document.getElementById("media-filter").value;
+
+            const tsType =
+                document.getElementById("ts-filter").value;
+
+            const derivative =
+                document.getElementById("derivative-filter").value;
+
+            const status =
+                document.getElementById("status-filter").value;
+
+            const genre =
+                document.getElementById("genre-filter").value;
+
+
+            // --------------------------------
+            // works.htmlへ検索条件を渡す
+            // --------------------------------
+
+            const params = new URLSearchParams();
+
+
+            if (media) {
+                params.set("media", media);
+            }
+
+            if (tsType) {
+                params.set("tsType", tsType);
+            }
+
+            if (derivative) {
+                params.set("derivative", derivative);
+            }
+
+            if (status) {
+                params.set("status", status);
+            }
+
+            if (genre) {
+                params.set("genre", genre);
+            }
+
+
+            // --------------------------------
+            // 作品一覧ページへ移動
+            // --------------------------------
+
+            window.location.href =
+                "works.html?" + params.toString();
+
+        }
+    );
+
+}
 
     filterButton.addEventListener(
         "click",

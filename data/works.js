@@ -102,6 +102,8 @@ const works = [
     url:
         "https://www.pixiv.net/user/159912/series/12",
 
-    image: ""
+    image: "",
+         // 追加日
+    addedDate: "2026-08-14",
 }
 ];

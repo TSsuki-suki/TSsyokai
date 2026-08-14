@@ -368,15 +368,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 // 作品種別
                 // --------------------------------
 
-                if (
-                    filters.media &&
-                    work.media !== filters.media
-                ) {
+               if (filters.media) {
 
-                    return false;
+    const mediaList =
+        Array.isArray(work.media)
+            ? work.media
+            : [work.media];
 
-                }
+    if (!mediaList.includes(filters.media)) {
 
+        return false;
+
+    }
+
+}
 
 
                 // --------------------------------

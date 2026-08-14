@@ -31,6 +31,20 @@ function createStars(value) {
 
 
 // ========================================
+// media 正規化ヘルパー
+// media が文字列か配列かを気にせずに扱うため、
+// 常に配列を返す
+// ========================================
+
+function getMediaArray(work) {
+    if (!work || work.media == null) return [];
+    if (Array.isArray(work.media)) return work.media;
+    if (typeof work.media === "string") return [work.media];
+    return [];
+}
+
+
+// ========================================
 // 作品カードを作る
 // ========================================
 
@@ -275,7 +289,7 @@ function renderNewWorks() {
    const newestNovels =
     newestWorks
     .filter(work =>
-        (work.media || []).includes("小説")
+        getMediaArray(work).includes("小説")
     )
     .slice(0, 5);
 
@@ -283,7 +297,7 @@ function renderNewWorks() {
 const newestManga =
     newestWorks
     .filter(work =>
-        (work.media || []).includes("漫画")
+        getMediaArray(work).includes("漫画")
     )
     .slice(0, 5);
 
@@ -291,7 +305,7 @@ const newestManga =
 const newestAnime =
     newestWorks
     .filter(work =>
-        (work.media || []).includes("アニメ")
+        getMediaArray(work).includes("アニメ")
     )
     .slice(0, 5);
 
@@ -545,22 +559,6 @@ function setupTopSearch() {
 
 
 // ========================================
-// 条件検索
-// ========================================
-
-// ========================================
-// 条件検索
-// ========================================
-
-// ========================================
-// 検索
-// ========================================
-
-// ========================================
-// 検索
-// ========================================
-
-// ========================================
 // トップページ：キーワード検索
 // ========================================
 
@@ -775,35 +773,14 @@ function setupFilterSearch() {
 
 
 // ========================================
-// ページ読み込み
+// ページ読み込み（まとめて1つに）
 // ========================================
 
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-        renderNewWorks();
-
-        renderMainWorks();
-
-        setupKeywordSearch();
-
-        setupFilterSearch();
-
-    }
-);
-
-
-
-// ========================================
-// ページ読み込み
-// ========================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-          // 作品数を表示
+        // 作品数を表示
         const workCount =
             document.getElementById("work-count");
 
@@ -811,15 +788,14 @@ document.addEventListener(
             workCount.textContent = works.length;
         }
 
-
+        // 表示処理
         renderNewWorks();
-
         renderMainWorks();
 
-        setupSearch();
-
+        // 検索設定
+        setupTopSearch();
+        setupKeywordSearch();
         setupFilterSearch();
 
     }
 );
-

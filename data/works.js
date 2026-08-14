@@ -63,7 +63,7 @@ const works = [
 
     site: "pixivなど多サイト",
 
-    media: "漫画","アニメ",
+    media: "漫画",
 
     derivative: "オリジナル",
 

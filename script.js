@@ -546,232 +546,94 @@ function setupTopSearch() {
 // 条件検索
 // ========================================
 
+// ========================================
+// 検索
+// ========================================
+
 function setupSearch() {
 
-    const filterButton =
-        document.getElementById("filter-button");
+    const searchButton =
+        document.getElementById(
+            "search-button"
+        );
 
-    if (!filterButton) {
+
+    const searchInput =
+        document.getElementById(
+            "search-input"
+        );
+
+
+    if (!searchButton || !searchInput) {
         return;
     }
 
 
-    filterButton.addEventListener(
-        "click",
-        function() {
 
-            // --------------------------------
-            // 選択された条件
-            // --------------------------------
+    // ----------------------------------------
+    // 検索実行
+    // ----------------------------------------
 
-            const media =
-                document.getElementById("media-filter").value;
+    function executeSearch() {
 
-            const tsType =
-                document.getElementById("ts-filter").value;
-
-            const derivative =
-                document.getElementById("derivative-filter").value;
-
-            const status =
-                document.getElementById("status-filter").value;
-
-            const genre =
-                document.getElementById("genre-filter").value;
+        const keyword =
+            searchInput.value.trim();
 
 
-            // --------------------------------
-            // works.htmlへ検索条件を渡す
-            // --------------------------------
+        // 検索語が空なら作品一覧へ
 
-            const params = new URLSearchParams();
-
-
-            if (media) {
-                params.set("media", media);
-            }
-
-            if (tsType) {
-                params.set("tsType", tsType);
-            }
-
-            if (derivative) {
-                params.set("derivative", derivative);
-            }
-
-            if (status) {
-                params.set("status", status);
-            }
-
-            if (genre) {
-                params.set("genre", genre);
-            }
-
-
-            // --------------------------------
-            // 作品一覧ページへ移動
-            // --------------------------------
+        if (!keyword) {
 
             window.location.href =
-                "works.html?" + params.toString();
+                "works.html";
+
+            return;
 
         }
+
+
+        // URLに検索語を渡す
+
+        const params =
+            new URLSearchParams();
+
+
+        params.set(
+            "search",
+            keyword
+        );
+
+
+        window.location.href =
+            "works.html?" +
+            params.toString();
+
+    }
+
+
+
+    // ----------------------------------------
+    // 検索ボタン
+    // ----------------------------------------
+
+    searchButton.addEventListener(
+        "click",
+        executeSearch
     );
 
-}
-
-    filterButton.addEventListener(
-        "click",
-        function() {
 
 
-            // --------------------------------
-            // 選択された条件
-            // --------------------------------
+    // ----------------------------------------
+    // Enterキー
+    // ----------------------------------------
 
-            const media =
-                document.getElementById(
-                    "media-filter"
-                ).value;
+    searchInput.addEventListener(
+        "keydown",
+        function (event) {
 
+            if (event.key === "Enter") {
 
-            const tsType =
-                document.getElementById(
-                    "ts-filter"
-                ).value;
-
-
-            const derivative =
-                document.getElementById(
-                    "derivative-filter"
-                ).value;
-
-
-            const status =
-                document.getElementById(
-                    "status-filter"
-                ).value;
-
-
-            const genre =
-                document.getElementById(
-                    "genre-filter"
-                ).value;
-
-
-
-            // --------------------------------
-            // 作品を絞り込む
-            // --------------------------------
-
-            const filteredWorks =
-                works.filter(function(work) {
-
-
-                    // 作品種別
-
-                    if (
-                        media &&
-                        work.media !== media
-                    ) {
-                        return false;
-                    }
-
-
-
-                    // TS形式
-                    // tsTypeは配列なので
-                    // includesで確認
-
-                    if (
-                        tsType &&
-                        (
-                            !work.tsType ||
-                            !work.tsType.includes(tsType)
-                        )
-                    ) {
-                        return false;
-                    }
-
-
-
-                    // オリジナル / 二次創作
-
-                    if (
-                        derivative &&
-                        work.derivative !== derivative
-                    ) {
-                        return false;
-                    }
-
-
-
-                    // 完結状況
-
-                    if (
-                        status &&
-                        work.status !== status
-                    ) {
-                        return false;
-                    }
-
-
-
-                    // ジャンル
-                    // genresは配列
-
-                    if (
-                        genre &&
-                        (
-                            !work.genres ||
-                            !work.genres.includes(genre)
-                        )
-                    ) {
-                        return false;
-                    }
-
-
-
-                    // 全条件を通過
-
-                    return true;
-
-                });
-
-
-
-            // --------------------------------
-            // 検索結果を表示
-            // --------------------------------
-
-            const worksContainer =
-                document.getElementById(
-                    "works-container"
-                );
-
-
-            renderWorks(
-                filteredWorks,
-                worksContainer
-            );
-
-
-
-            // --------------------------------
-            // 結果表示場所まで移動
-            // --------------------------------
-
-            const worksSection =
-                document.getElementById(
-                    "works"
-                );
-
-
-            if (worksSection) {
-
-                worksSection.scrollIntoView({
-                    behavior: "smooth"
-                });
+                executeSearch();
 
             }
 
@@ -779,7 +641,6 @@ function setupSearch() {
     );
 
 }
-
 // ========================================
 // キーワード検索
 // ========================================

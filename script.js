@@ -557,7 +557,135 @@ function setupSearch() {
             "search-button"
         );
 
+// ========================================
+// トップページの条件検索
+// ========================================
 
+function setupFilterSearch() {
+
+    const filterButton =
+        document.getElementById(
+            "filter-button"
+        );
+
+
+    if (!filterButton) {
+        return;
+    }
+
+
+
+    filterButton.addEventListener(
+        "click",
+        function () {
+
+            const media =
+                document.getElementById(
+                    "media-filter"
+                ).value;
+
+
+            const tsType =
+                document.getElementById(
+                    "ts-filter"
+                ).value;
+
+
+            const derivative =
+                document.getElementById(
+                    "derivative-filter"
+                ).value;
+
+
+            const status =
+                document.getElementById(
+                    "status-filter"
+                ).value;
+
+
+            const genre =
+                document.getElementById(
+                    "genre-filter"
+                ).value;
+
+
+
+            const params =
+                new URLSearchParams();
+
+
+
+            if (media) {
+
+                params.set(
+                    "media",
+                    media
+                );
+
+            }
+
+
+            if (tsType) {
+
+                params.set(
+                    "tsType",
+                    tsType
+                );
+
+            }
+
+
+            if (derivative) {
+
+                params.set(
+                    "derivative",
+                    derivative
+                );
+
+            }
+
+
+            if (status) {
+
+                params.set(
+                    "status",
+                    status
+                );
+
+            }
+
+
+            if (genre) {
+
+                params.set(
+                    "genre",
+                    genre
+                );
+
+            }
+
+
+
+            const query =
+                params.toString();
+
+
+            if (query) {
+
+                window.location.href =
+                    "works.html?" + query;
+
+            } else {
+
+                window.location.href =
+                    "works.html";
+
+            }
+
+        }
+    );
+
+}
     const searchInput =
         document.getElementById(
             "search-input"
@@ -721,7 +849,7 @@ document.addEventListener(
 
         setupSearch();
 
-        setupKeywordSearch();
+        setupFilterSearch();
 
     }
 );

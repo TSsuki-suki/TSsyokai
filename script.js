@@ -797,6 +797,15 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
 
+          // 作品数を表示
+        const workCount =
+            document.getElementById("work-count");
+
+        if (workCount && typeof works !== "undefined") {
+            workCount.textContent = works.length;
+        }
+
+
         renderNewWorks();
 
         renderMainWorks();
